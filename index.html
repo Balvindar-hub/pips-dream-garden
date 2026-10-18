@@ -40,7 +40,6 @@
   </script>
 
   <style>
-    /* Custom Storybook & Hand-crafted Aesthetic Styling */
     :root {
       --bg-main: #fff8f1;
       --text-main: #5c4033;
@@ -55,7 +54,6 @@
       overflow-x: hidden;
     }
 
-    /* Hand-drawn frame and border effects */
     .storybook-border {
       border: 3px solid #a34063;
       border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
@@ -95,7 +93,6 @@
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
 
-    /* Keyframe Animations */
     @keyframes floatSlow {
       0%, 100% { transform: translateY(0px) rotate(0deg); }
       50% { transform: translateY(-12px) rotate(1.5deg); }
@@ -123,7 +120,6 @@
       animation: spinMusicBox 8s linear infinite;
     }
 
-    /* Custom Scrollbar */
     ::-webkit-scrollbar {
       width: 10px;
     }
@@ -138,13 +134,11 @@
       border-radius: 5px;
     }
 
-    /* Lantern Light Mode Transitions */
     .lantern-glow-gold { filter: drop-shadow(0 0 25px rgba(255, 215, 0, 0.8)); }
     .lantern-glow-lavender { filter: drop-shadow(0 0 25px rgba(225, 190, 231, 0.9)); }
     .lantern-glow-sunset { filter: drop-shadow(0 0 25px rgba(255, 112, 67, 0.85)); }
     .lantern-glow-aurora { filter: drop-shadow(0 0 25px rgba(105, 240, 174, 0.85)); }
 
-    /* Custom Cursor Details */
     .clickable-flower {
       cursor: pointer;
       transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -156,16 +150,18 @@
       transform: scale(0.95);
     }
 
-    /* Confetti Particle CSS */
-    .sparkle-particle {
-      position: absolute;
+    /* Cursor Trail Sparkle Animation */
+    .cursor-sparkle {
+      position: fixed;
       pointer-events: none;
-      animation: flySparkle 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+      z-index: 9999;
+      font-size: 16px;
+      animation: cursorFade 0.8s ease-out forwards;
     }
 
-    @keyframes flySparkle {
-      0% { opacity: 1; transform: translate(0, 0) scale(1); }
-      100% { opacity: 0; transform: translate(var(--tw-x), var(--tw-y)) scale(0.2); }
+    @keyframes cursorFade {
+      0% { opacity: 1; transform: translate(-50%, -50%) scale(1) rotate(0deg); }
+      100% { opacity: 0; transform: translate(-50%, -100px) scale(0.3) rotate(45deg); }
     }
   </style>
 </head>
@@ -175,7 +171,6 @@
   <header class="sticky top-0 z-50 backdrop-blur-md bg-cream/90 dark:bg-night-sky/90 border-b border-berry/20 transition-colors duration-300">
     <div class="max-w-6xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between">
       
-      <!-- Wordmark Logo -->
       <a href="#" class="flex items-center gap-3 group">
         <div class="w-10 h-10 rounded-full bg-blush border-2 border-berry flex items-center justify-center text-xl group-hover:scale-110 transition-transform">
           🌙
@@ -186,7 +181,6 @@
         </div>
       </a>
 
-      <!-- Navigation Links -->
       <nav class="hidden md:flex items-center gap-6 font-medium text-chocolate dark:text-night-text">
         <a href="#creations" class="hover:text-berry dark:hover:text-lavender transition-colors flex items-center gap-1">
           <span>✨</span> My Little Creations
@@ -199,20 +193,16 @@
         </a>
       </nav>
 
-      <!-- Action Toggles (Theme & Sound) -->
       <div class="flex items-center gap-3">
-        <!-- Audio Mute/Play Toggle -->
         <button id="soundToggleBtn" onclick="toggleAudio()" aria-label="Toggle Lullaby Music" class="px-3 py-1.5 rounded-full border-2 border-berry bg-butter/60 dark:bg-night-card text-chocolate dark:text-night-text font-semibold text-xs md:text-sm flex items-center gap-2 hover:bg-butter transition-all active:scale-95 shadow-sm">
           <span id="soundIcon">🎵</span>
           <span id="soundText">Play Lullaby</span>
         </button>
 
-        <!-- Day/Night Mode Switch -->
         <button id="themeToggleBtn" onclick="toggleTheme()" aria-label="Toggle Day and Night Mode" class="p-2 rounded-full border-2 border-berry bg-blush dark:bg-night-card text-berry dark:text-butter hover:rotate-12 transition-all active:scale-95 shadow-sm">
           <span id="themeIcon" class="text-lg">🌙</span>
         </button>
 
-        <!-- Say Hello Action Modal Trigger -->
         <button onclick="openModal()" class="hidden sm:block px-4 py-1.5 rounded-full bg-berry hover:bg-berry-dark text-white font-medium text-sm transition-all shadow-md active:scale-95">
           Say Hello 👋
         </button>
@@ -223,8 +213,6 @@
 
   <!-- ================= HERO SECTION ================= -->
   <section class="relative min-h-[85vh] flex items-center justify-center py-12 px-4 overflow-hidden">
-    
-    <!-- Floating Background Decorative Elements -->
     <div class="absolute inset-0 pointer-events-none opacity-40 dark:opacity-20">
       <div class="absolute top-10 left-10 text-3xl animate-twinkle">⭐</div>
       <div class="absolute top-1/4 right-12 text-4xl animate-twinkle" style="animation-delay: 1s;">✨</div>
@@ -234,8 +222,6 @@
     </div>
 
     <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
-      
-      <!-- Text & Welcome Column (7 cols) -->
       <div class="lg:col-span-7 text-center lg:text-left space-y-6">
         <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blush/80 dark:bg-night-card border border-berry/30 text-berry dark:text-lavender text-sm font-medium">
           <span>☁️</span> Official Junior Dream Engineer
@@ -250,13 +236,11 @@
           Hello, little visitor. I'm <strong>Pip</strong>, a tiny dream engineer with a very big imagination. I spend my nights crafting cozy lullabies, glowing lanterns, and starlit journeys.
         </p>
 
-        <!-- Interactive Quote Badge -->
         <div class="p-4 rounded-2xl bg-butter/40 dark:bg-night-card/60 border-l-4 border-berry max-w-md mx-auto lg:mx-0 text-left text-sm text-chocolate/90 dark:text-night-text">
           <p class="italic font-serif">"Every star in the night sky is just a happy thought waiting to be tucked into bed."</p>
           <span class="block text-right text-xs font-bold text-berry dark:text-lavender mt-1">— Pip's Journal</span>
         </div>
 
-        <!-- Scroll Invitation -->
         <div class="pt-4 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
           <a href="#creations" class="px-6 py-3 rounded-full bg-berry hover:bg-berry-dark text-white font-medium shadow-lg hover:shadow-xl transition-all flex items-center gap-2 active:scale-95">
             <span>Explore My Garden</span>
@@ -268,10 +252,8 @@
         </div>
       </div>
 
-      <!-- Character Portrait Hero Asset (5 cols) -->
       <div class="lg:col-span-5 flex justify-center">
         <div class="relative max-w-sm sm:max-w-md w-full">
-          <!-- Hand-drawn background frame -->
           <div class="absolute inset-0 bg-butter dark:bg-berry/30 rounded-3xl transform rotate-3 scale-105 border-2 border-berry/40"></div>
           
           <div class="relative paper-card p-4 sm:p-6 text-center transform -rotate-1 transition-transform hover:rotate-0 duration-300">
@@ -291,7 +273,6 @@
           </div>
         </div>
       </div>
-
     </div>
   </section>
 
@@ -305,8 +286,6 @@
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        
-        <!-- Scrapbook Card 1 -->
         <div class="paper-card p-5 transform -rotate-1 hover:rotate-0 transition-all duration-300">
           <div class="tape-strip"></div>
           <div class="text-3xl mb-3">🌙</div>
@@ -316,7 +295,6 @@
           </p>
         </div>
 
-        <!-- Scrapbook Card 2 -->
         <div class="paper-card p-5 transform rotate-2 hover:rotate-0 transition-all duration-300">
           <div class="tape-strip" style="left: auto; right: 30px; transform: rotate(5deg);"></div>
           <div class="text-3xl mb-3">🦄</div>
@@ -326,7 +304,6 @@
           </p>
         </div>
 
-        <!-- Scrapbook Card 3 -->
         <div class="paper-card p-5 transform -rotate-2 hover:rotate-0 transition-all duration-300">
           <div class="tape-strip"></div>
           <div class="text-3xl mb-3">🕯️</div>
@@ -335,7 +312,6 @@
             Lanterns crafted with starlight filters to ensure scary shadows are turned into cozy blanket forts.
           </p>
         </div>
-
       </div>
     </div>
   </section>
@@ -343,16 +319,14 @@
 
   <!-- ================= PORTFOLIO SHOWCASES ================= -->
   <section id="creations" class="py-20 px-4 max-w-6xl mx-auto space-y-24">
-    
     <div class="text-center max-w-2xl mx-auto">
       <span class="text-berry dark:text-lavender font-semibold text-sm tracking-widest uppercase block mb-1">My Portfolio</span>
       <h2 class="font-serif text-4xl md:text-5xl font-bold text-chocolate dark:text-white">My Little Creations</h2>
       <div class="w-16 h-1 bg-berry mx-auto mt-4 rounded-full"></div>
     </div>
 
-    <!-- SHOWCASE 1: THE LULLABY LAB (Music Box Synthesizer) -->
+    <!-- SHOWCASE 1 -->
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center paper-card p-6 md:p-10">
-      
       <div class="lg:col-span-5 text-center">
         <div class="relative inline-block">
           <div id="unicornGlow" class="absolute inset-0 bg-butter rounded-full blur-2xl opacity-60"></div>
@@ -377,7 +351,6 @@
           </p>
         </div>
 
-        <!-- Interactive Synthesizer Piano Keys -->
         <div class="bg-cream dark:bg-night-sky p-4 rounded-2xl border-2 border-berry/30 space-y-3">
           <div class="flex items-center justify-between text-xs font-semibold text-chocolate/70 dark:text-night-text/70">
             <span>🎵 Tap keys to play notes:</span>
@@ -385,27 +358,13 @@
           </div>
 
           <div class="grid grid-cols-7 gap-1 md:gap-2">
-            <button onclick="playSynthNote(261.63, 'C4')" class="h-16 rounded-xl bg-white dark:bg-night-card border-2 border-berry hover:bg-blush active:scale-95 transition-all flex flex-col justify-end p-1 text-center shadow-sm">
-              <span class="text-xs font-bold text-berry">C4</span>
-            </button>
-            <button onclick="playSynthNote(293.66, 'D4')" class="h-16 rounded-xl bg-white dark:bg-night-card border-2 border-berry hover:bg-blush active:scale-95 transition-all flex flex-col justify-end p-1 text-center shadow-sm">
-              <span class="text-xs font-bold text-berry">D4</span>
-            </button>
-            <button onclick="playSynthNote(329.63, 'E4')" class="h-16 rounded-xl bg-white dark:bg-night-card border-2 border-berry hover:bg-blush active:scale-95 transition-all flex flex-col justify-end p-1 text-center shadow-sm">
-              <span class="text-xs font-bold text-berry">E4</span>
-            </button>
-            <button onclick="playSynthNote(349.23, 'F4')" class="h-16 rounded-xl bg-white dark:bg-night-card border-2 border-berry hover:bg-blush active:scale-95 transition-all flex flex-col justify-end p-1 text-center shadow-sm">
-              <span class="text-xs font-bold text-berry">F4</span>
-            </button>
-            <button onclick="playSynthNote(392.00, 'G4')" class="h-16 rounded-xl bg-white dark:bg-night-card border-2 border-berry hover:bg-blush active:scale-95 transition-all flex flex-col justify-end p-1 text-center shadow-sm">
-              <span class="text-xs font-bold text-berry">G4</span>
-            </button>
-            <button onclick="playSynthNote(440.00, 'A4')" class="h-16 rounded-xl bg-white dark:bg-night-card border-2 border-berry hover:bg-blush active:scale-95 transition-all flex flex-col justify-end p-1 text-center shadow-sm">
-              <span class="text-xs font-bold text-berry">A4</span>
-            </button>
-            <button onclick="playSynthNote(493.88, 'B4')" class="h-16 rounded-xl bg-white dark:bg-night-card border-2 border-berry hover:bg-blush active:scale-95 transition-all flex flex-col justify-end p-1 text-center shadow-sm">
-              <span class="text-xs font-bold text-berry">B4</span>
-            </button>
+            <button onclick="playSynthNote(261.63, 'C4')" class="h-16 rounded-xl bg-white dark:bg-night-card border-2 border-berry hover:bg-blush active:scale-95 transition-all flex flex-col justify-end p-1 text-center shadow-sm"><span class="text-xs font-bold text-berry">C4</span></button>
+            <button onclick="playSynthNote(293.66, 'D4')" class="h-16 rounded-xl bg-white dark:bg-night-card border-2 border-berry hover:bg-blush active:scale-95 transition-all flex flex-col justify-end p-1 text-center shadow-sm"><span class="text-xs font-bold text-berry">D4</span></button>
+            <button onclick="playSynthNote(329.63, 'E4')" class="h-16 rounded-xl bg-white dark:bg-night-card border-2 border-berry hover:bg-blush active:scale-95 transition-all flex flex-col justify-end p-1 text-center shadow-sm"><span class="text-xs font-bold text-berry">E4</span></button>
+            <button onclick="playSynthNote(349.23, 'F4')" class="h-16 rounded-xl bg-white dark:bg-night-card border-2 border-berry hover:bg-blush active:scale-95 transition-all flex flex-col justify-end p-1 text-center shadow-sm"><span class="text-xs font-bold text-berry">F4</span></button>
+            <button onclick="playSynthNote(392.00, 'G4')" class="h-16 rounded-xl bg-white dark:bg-night-card border-2 border-berry hover:bg-blush active:scale-95 transition-all flex flex-col justify-end p-1 text-center shadow-sm"><span class="text-xs font-bold text-berry">G4</span></button>
+            <button onclick="playSynthNote(440.00, 'A4')" class="h-16 rounded-xl bg-white dark:bg-night-card border-2 border-berry hover:bg-blush active:scale-95 transition-all flex flex-col justify-end p-1 text-center shadow-sm"><span class="text-xs font-bold text-berry">A4</span></button>
+            <button onclick="playSynthNote(493.88, 'B4')" class="h-16 rounded-xl bg-white dark:bg-night-card border-2 border-berry hover:bg-blush active:scale-95 transition-all flex flex-col justify-end p-1 text-center shadow-sm"><span class="text-xs font-bold text-berry">B4</span></button>
           </div>
 
           <div class="flex gap-2 pt-2">
@@ -415,12 +374,10 @@
           </div>
         </div>
       </div>
-
     </div>
 
-    <!-- SHOWCASE 2: THE NIGHTLIGHT COLLECTION (Interactive Lantern Light Modes) -->
+    <!-- SHOWCASE 2 -->
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center paper-card p-6 md:p-10">
-      
       <div class="lg:col-span-7 space-y-6 order-2 lg:order-1">
         <div>
           <span class="px-3 py-1 rounded-full bg-blush dark:bg-night-sky border border-berry/30 text-berry dark:text-lavender text-xs font-semibold">
@@ -432,7 +389,6 @@
           </p>
         </div>
 
-        <!-- Interactive Color Palette Switcher -->
         <div class="space-y-3 bg-cream dark:bg-night-sky p-4 rounded-2xl border-2 border-berry/30">
           <span class="text-xs font-semibold text-chocolate/70 dark:text-night-text/70 block">Select Lantern Atmosphere:</span>
           
@@ -440,15 +396,12 @@
             <button onclick="setLanternMode('gold')" class="p-3 rounded-xl border-2 border-yellow-400 bg-amber-50 dark:bg-amber-950/40 text-chocolate dark:text-white hover:shadow-md transition-all text-xs font-medium text-center">
               <span class="block text-base mb-1">🌙</span> Starlight Gold
             </button>
-
             <button onclick="setLanternMode('lavender')" class="p-3 rounded-xl border-2 border-purple-400 bg-purple-50 dark:bg-purple-950/40 text-chocolate dark:text-white hover:shadow-md transition-all text-xs font-medium text-center">
               <span class="block text-base mb-1">✨</span> Lavender Moon
             </button>
-
             <button onclick="setLanternMode('sunset')" class="p-3 rounded-xl border-2 border-orange-400 bg-orange-50 dark:bg-orange-950/40 text-chocolate dark:text-white hover:shadow-md transition-all text-xs font-medium text-center">
               <span class="block text-base mb-1">🌅</span> Sunset Glow
             </button>
-
             <button onclick="setLanternMode('aurora')" class="p-3 rounded-xl border-2 border-emerald-400 bg-emerald-50 dark:bg-emerald-950/40 text-chocolate dark:text-white hover:shadow-md transition-all text-xs font-medium text-center">
               <span class="block text-base mb-1">🌌</span> Dreamy Aurora
             </button>
@@ -471,10 +424,9 @@
         </div>
         <p class="text-xs text-chocolate/60 dark:text-night-text/60 mt-3 italic">Click buttons to change lantern spectral output</p>
       </div>
-
     </div>
 
-    <!-- SHOWCASE 3: DREAM DELIVERY ROUTE (Interactive SVG Map) -->
+    <!-- SHOWCASE 3 -->
     <div class="paper-card p-6 md:p-10 space-y-6">
       <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
@@ -491,78 +443,55 @@
         </div>
       </div>
 
-      <!-- SVG Map Display -->
       <div class="relative w-full h-80 sm:h-96 bg-night-sky rounded-2xl overflow-hidden border-2 border-berry/30 p-4">
-        
-        <!-- Stars background on SVG map -->
         <div class="absolute inset-0 opacity-50 pointer-events-none">
           <div class="absolute top-5 left-10 text-white text-xs">✦</div>
           <div class="absolute top-12 right-20 text-white text-xs">✦</div>
           <div class="absolute bottom-10 left-1/3 text-white text-xs">✦</div>
         </div>
 
-        <!-- Curved Animated Delivery Route Path SVG -->
         <svg class="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
           <path id="routePath" d="M 60,200 Q 180,80 320,180 T 580,120 T 800,220" fill="none" stroke="#e1bee7" stroke-width="3" stroke-dasharray="8 8" class="animate-pulse"/>
         </svg>
 
-        <!-- Interactive Creature Nodes -->
-        <!-- Creature 1: Sleepy Bear -->
         <button onclick="deliverDream('bear', '🐻 Barnaby the Bear', 'A giant jar of golden cloud-honey and cozy hibernation blankets.')" class="absolute top-36 left-[8%] md:left-[12%] group flex flex-col items-center">
-          <div id="node-bear" class="w-12 h-12 rounded-full bg-night-card border-2 border-lavender flex items-center justify-center text-2xl group-hover:scale-125 transition-transform shadow-lg">
-            🐻
-          </div>
+          <div id="node-bear" class="w-12 h-12 rounded-full bg-night-card border-2 border-lavender flex items-center justify-center text-2xl group-hover:scale-125 transition-transform shadow-lg">🐻</div>
           <span class="text-[10px] text-white bg-black/60 px-2 py-0.5 rounded mt-1">Barnaby</span>
         </button>
 
-        <!-- Creature 2: Night Owl -->
         <button onclick="deliverDream('owl', '🦉 Ollie the Owl', 'A starry sky map showing new undiscovered constellations.')" class="absolute top-16 left-[35%] md:left-[38%] group flex flex-col items-center">
-          <div id="node-owl" class="w-12 h-12 rounded-full bg-night-card border-2 border-lavender flex items-center justify-center text-2xl group-hover:scale-125 transition-transform shadow-lg">
-            🦉
-          </div>
+          <div id="node-owl" class="w-12 h-12 rounded-full bg-night-card border-2 border-lavender flex items-center justify-center text-2xl group-hover:scale-125 transition-transform shadow-lg">🦉</div>
           <span class="text-[10px] text-white bg-black/60 px-2 py-0.5 rounded mt-1">Ollie</span>
         </button>
 
-        <!-- Creature 3: Little Bunny -->
         <button onclick="deliverDream('bunny', '🐰 Bella the Bunny', 'A soft field of glowing clover blossoms that sing softly.')" class="absolute top-28 left-[60%] md:left-[64%] group flex flex-col items-center">
-          <div id="node-bunny" class="w-12 h-12 rounded-full bg-night-card border-2 border-lavender flex items-center justify-center text-2xl group-hover:scale-125 transition-transform shadow-lg">
-            🐰
-          </div>
+          <div id="node-bunny" class="w-12 h-12 rounded-full bg-night-card border-2 border-lavender flex items-center justify-center text-2xl group-hover:scale-125 transition-transform shadow-lg">🐰</div>
           <span class="text-[10px] text-white bg-black/60 px-2 py-0.5 rounded mt-1">Bella</span>
         </button>
 
-        <!-- Creature 4: Sleepy Kitten -->
         <button onclick="deliverDream('kitten', '🐱 Cleo the Kitten', 'An endless ball of rainbow yarn made from moonbeams.')" class="absolute top-44 left-[82%] group flex flex-col items-center">
-          <div id="node-kitten" class="w-12 h-12 rounded-full bg-night-card border-2 border-lavender flex items-center justify-center text-2xl group-hover:scale-125 transition-transform shadow-lg">
-            🐱
-          </div>
+          <div id="node-kitten" class="w-12 h-12 rounded-full bg-night-card border-2 border-lavender flex items-center justify-center text-2xl group-hover:scale-125 transition-transform shadow-lg">🐱</div>
           <span class="text-[10px] text-white bg-black/60 px-2 py-0.5 rounded mt-1">Cleo</span>
         </button>
 
-        <!-- Delivery Status Popover inside Map -->
         <div id="deliveryBox" class="absolute bottom-4 left-4 right-4 bg-white/95 dark:bg-night-card/95 backdrop-blur-md p-3.5 rounded-xl border border-berry/30 text-xs text-chocolate dark:text-night-text shadow-xl">
           <span class="font-bold text-berry dark:text-lavender block">✨ Tap any creature above to dispatch Pip's dream express!</span>
         </div>
       </div>
     </div>
-
   </section>
 
 
   <!-- ================= ORIGIN STORY ================= -->
   <section id="story" class="py-20 bg-blush/20 dark:bg-night-card/20 border-y border-berry/10">
     <div class="max-w-4xl mx-auto px-4 space-y-16">
-      
       <div class="text-center">
         <span class="text-berry dark:text-lavender font-semibold text-sm tracking-widest uppercase block">Storybook Scroll</span>
         <h2 class="font-serif text-4xl md:text-5xl font-bold text-chocolate dark:text-white mt-1">Pip's Origin Story</h2>
         <p class="text-chocolate/70 dark:text-night-text/70 mt-2 font-serif italic">How a tiny skull baby became the Midnight Nursery's Junior Dream Engineer.</p>
       </div>
 
-      <!-- Story Timeline Scenes -->
       <div class="space-y-12 relative before:absolute before:inset-0 before:left-1/2 before:-translate-x-1/2 before:w-1 before:bg-dashed before:border-r-2 before:border-berry/30 before:hidden md:before:block">
-        
-        <!-- Scene 1 -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center relative">
           <div class="paper-card p-6 md:text-right space-y-2">
             <span class="text-xs font-bold text-berry dark:text-lavender uppercase">Chapter I</span>
@@ -572,18 +501,13 @@
             </p>
           </div>
           <div class="flex justify-center md:justify-start">
-            <div class="w-32 h-32 rounded-full bg-butter/60 dark:bg-night-card border-4 border-berry flex items-center justify-center text-5xl shadow-md">
-              ☁️
-            </div>
+            <div class="w-32 h-32 rounded-full bg-butter/60 dark:bg-night-card border-4 border-berry flex items-center justify-center text-5xl shadow-md">☁️</div>
           </div>
         </div>
 
-        <!-- Scene 2 -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center relative">
           <div class="flex justify-center md:justify-end order-2 md:order-1">
-            <div class="w-32 h-32 rounded-full bg-blush dark:bg-night-card border-4 border-berry flex items-center justify-center text-5xl shadow-md">
-              🎠
-            </div>
+            <div class="w-32 h-32 rounded-full bg-blush dark:bg-night-card border-4 border-berry flex items-center justify-center text-5xl shadow-md">🎠</div>
           </div>
           <div class="paper-card p-6 space-y-2 order-1 md:order-2">
             <span class="text-xs font-bold text-berry dark:text-lavender uppercase">Chapter II</span>
@@ -594,7 +518,6 @@
           </div>
         </div>
 
-        <!-- Scene 3 -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center relative">
           <div class="paper-card p-6 md:text-right space-y-2">
             <span class="text-xs font-bold text-berry dark:text-lavender uppercase">Chapter III</span>
@@ -604,18 +527,13 @@
             </p>
           </div>
           <div class="flex justify-center md:justify-start">
-            <div class="w-32 h-32 rounded-full bg-lavender/40 dark:bg-night-card border-4 border-berry flex items-center justify-center text-5xl shadow-md">
-              🏮
-            </div>
+            <div class="w-32 h-32 rounded-full bg-lavender/40 dark:bg-night-card border-4 border-berry flex items-center justify-center text-5xl shadow-md">🏮</div>
           </div>
         </div>
 
-        <!-- Scene 4 -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center relative">
           <div class="flex justify-center md:justify-end order-2 md:order-1">
-            <div class="w-32 h-32 rounded-full bg-butter/60 dark:bg-night-card border-4 border-berry flex items-center justify-center text-5xl shadow-md">
-              ✨
-            </div>
+            <div class="w-32 h-32 rounded-full bg-butter/60 dark:bg-night-card border-4 border-berry flex items-center justify-center text-5xl shadow-md">✨</div>
           </div>
           <div class="paper-card p-6 space-y-2 order-1 md:order-2">
             <span class="text-xs font-bold text-berry dark:text-lavender uppercase">Chapter IV</span>
@@ -625,9 +543,7 @@
             </p>
           </div>
         </div>
-
       </div>
-
     </div>
   </section>
 
@@ -635,54 +551,35 @@
   <!-- ================= INTERACTIVE DREAM GARDEN ================= -->
   <section id="garden" class="py-20 px-4 max-w-5xl mx-auto">
     <div class="paper-card p-6 md:p-10 space-y-6 text-center">
-      
       <div>
         <span class="text-berry dark:text-lavender font-semibold text-sm tracking-widest uppercase block">Interactive Playground</span>
         <h2 class="font-serif text-3xl md:text-4xl font-bold text-chocolate dark:text-white">Pip's Midnight Garden</h2>
         <p class="text-sm text-chocolate/70 dark:text-night-text/70 mt-1">Tap flowers & star-sprouts to harvest gentle chime notes and magical petals!</p>
       </div>
 
-      <!-- Garden Interactive Grid canvas area -->
       <div id="gardenArea" class="relative w-full h-80 bg-gradient-to-b from-cream to-blush/40 dark:from-night-card dark:to-night-sky rounded-2xl border-2 border-dashed border-berry/40 p-6 overflow-hidden flex flex-wrap items-center justify-around gap-6">
-        
-        <!-- Flower Node 1 -->
         <div onclick="harvestFlower(this, 329.63)" class="clickable-flower text-5xl select-none p-2" title="Click me!">🌸</div>
-        
-        <!-- Flower Node 2 -->
         <div onclick="harvestFlower(this, 392.00)" class="clickable-flower text-5xl select-none p-2" title="Click me!">🌺</div>
-
-        <!-- Flower Node 3 -->
         <div onclick="harvestFlower(this, 440.00)" class="clickable-flower text-5xl select-none p-2" title="Click me!">🌷</div>
-
-        <!-- Flower Node 4 -->
         <div onclick="harvestFlower(this, 523.25)" class="clickable-flower text-5xl select-none p-2" title="Click me!">🌼</div>
-
-        <!-- Flower Node 5 -->
         <div onclick="harvestFlower(this, 587.33)" class="clickable-flower text-5xl select-none p-2" title="Click me!">🌻</div>
-
-        <!-- Flower Node 6 -->
         <div onclick="harvestFlower(this, 659.25)" class="clickable-flower text-5xl select-none p-2" title="Click me!">🌱</div>
-
-        <!-- Flower Node 7 -->
         <div onclick="harvestFlower(this, 698.46)" class="clickable-flower text-5xl select-none p-2" title="Click me!">🍄</div>
 
-        <!-- HIDDEN EASTER EGG FLOWER (Corner Node) -->
         <div id="easterEggFlower" onclick="clickEasterEgg(event)" class="clickable-flower text-4xl select-none p-2 absolute bottom-3 right-4 opacity-70 hover:opacity-100" title="A tiny unusual golden sprout...">
           🌟
         </div>
-
       </div>
 
       <div class="flex items-center justify-between text-xs text-chocolate/60 dark:text-night-text/60 px-2">
         <span>Flowers Harvested: <strong id="harvestCount" class="text-berry dark:text-lavender">0</strong></span>
         <span>🔍 Hint: There might be a hidden secret somewhere in the garden...</span>
       </div>
-
     </div>
   </section>
 
 
-  <!-- ================= EASTER EGG SECRET MODAL ================= -->
+  <!-- ================= EASTER EGG MODAL ================= -->
   <div id="easterEggModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
     <div class="paper-card max-w-md w-full p-6 text-center space-y-4 animate-float">
       <div class="tape-strip"></div>
@@ -700,7 +597,7 @@
   </div>
 
 
-  <!-- ================= SAY HELLO / WISH MODAL ================= -->
+  <!-- ================= SAY HELLO MODAL ================= -->
   <div id="helloModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
     <div class="paper-card max-w-md w-full p-6 space-y-4">
       <div class="flex justify-between items-center border-b border-berry/20 pb-3">
@@ -740,7 +637,6 @@
   <!-- ================= STORYBOOK FOOTER ================= -->
   <footer class="bg-cream dark:bg-night-sky border-t-2 border-dashed border-berry/30 py-12 px-4 transition-colors">
     <div class="max-w-5xl mx-auto text-center space-y-6">
-      
       <div class="flex items-center justify-center gap-3">
         <span class="text-2xl">🌙</span>
         <span class="font-serif font-bold text-2xl text-berry dark:text-lavender">Pip's Dream Garden</span>
@@ -751,7 +647,6 @@
         Built with gentle thoughts, Web Audio API soundscapes, and open-source love for the <strong>Baby's First Website Hackathon</strong> by <strong>haX.baby</strong>.
       </p>
 
-      <!-- Credits & Links -->
       <div class="flex flex-wrap items-center justify-center gap-4 text-xs font-medium text-chocolate/70 dark:text-night-text/70 border-y border-berry/10 py-4 max-w-lg mx-auto">
         <span>🎨 Artwork: Official Pip Assets</span>
         <span>•</span>
@@ -767,17 +662,48 @@
       <p class="text-[11px] text-chocolate/50 dark:text-night-text/50">
         © 2026 Pip's Midnight Nursery • Zero paid APIs, 100% Client-Side.
       </p>
-
     </div>
   </footer>
 
 
   <!-- ================= JAVASCRIPT LOGIC ================= -->
   <script>
-    /* ================= 1. WEB AUDIO API SYNTHESIZER ================= */
+    /* ================= 1. SPARKLE CURSOR TRAIL EFFECT ================= */
+    const sparkleSymbols = ['✨', '⭐', '💫', '💖', '🌟'];
+    let lastSparkleTime = 0;
+
+    document.addEventListener('mousemove', (e) => {
+      const now = Date.now();
+      // Throttle to create smooth trail without lagging browser
+      if (now - lastSparkleTime > 50) {
+        lastSparkleTime = now;
+        createCursorSparkle(e.clientX, e.clientY);
+      }
+    });
+
+    function createCursorSparkle(x, y) {
+      const sparkle = document.createElement('div');
+      sparkle.className = 'cursor-sparkle';
+      sparkle.innerText = sparkleSymbols[Math.floor(Math.random() * sparkleSymbols.length)];
+      
+      // Randomize offset slightly around cursor
+      const offsetX = (Math.random() - 0.5) * 20;
+      const offsetY = (Math.random() - 0.5) * 20;
+      
+      sparkle.style.left = `${x + offsetX}px`;
+      sparkle.style.top = `${y + offsetY}px`;
+      
+      document.body.appendChild(sparkle);
+
+      setTimeout(() => {
+        sparkle.remove();
+      }, 800);
+    }
+
+
+    /* ================= 2. WEB AUDIO API SYNTHESIZER ================= */
     let audioCtx = null;
     let isMuted = false;
-    let autoLullabyTimer = null;
 
     function initAudio() {
       if (!audioCtx) {
@@ -789,7 +715,6 @@
       }
     }
 
-    // Play a soft bell note using Web Audio API
     function playSynthNote(freq, noteName = '') {
       if (isMuted) return;
       initAudio();
@@ -798,11 +723,9 @@
         const osc = audioCtx.createOscillator();
         const gain = audioCtx.createGain();
 
-        // Sine wave for music box / glockenspiel soft sound
         osc.type = 'sine';
         osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
 
-        // Soft bell envelope (attack & decay)
         gain.gain.setValueAtTime(0.01, audioCtx.currentTime);
         gain.gain.exponentialRampToValueAtTime(0.3, audioCtx.currentTime + 0.04);
         gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 1.2);
@@ -813,7 +736,6 @@
         osc.start();
         osc.stop(audioCtx.currentTime + 1.25);
 
-        // UI Feedback
         if (noteName) {
           const statusElem = document.getElementById('playingNoteText');
           if (statusElem) statusElem.innerText = `Playing: ${noteName}`;
@@ -823,17 +745,16 @@
       }
     }
 
-    // Play automated lullaby sequence (Twinkle Twinkle theme)
     function playAutoLullaby() {
       initAudio();
       const notes = [
-        { freq: 261.63, delay: 0 },    // C4
-        { freq: 261.63, delay: 500 },  // C4
-        { freq: 392.00, delay: 1000 }, // G4
-        { freq: 392.00, delay: 1500 }, // G4
-        { freq: 440.00, delay: 2000 }, // A4
-        { freq: 440.00, delay: 2500 }, // A4
-        { freq: 392.00, delay: 3000 }  // G4
+        { freq: 261.63, delay: 0 },
+        { freq: 261.63, delay: 500 },
+        { freq: 392.00, delay: 1000 },
+        { freq: 392.00, delay: 1500 },
+        { freq: 440.00, delay: 2000 },
+        { freq: 440.00, delay: 2500 },
+        { freq: 392.00, delay: 3000 }
       ];
 
       const img = document.getElementById('lullabyImg');
@@ -850,7 +771,6 @@
       }, 4000);
     }
 
-    // Toggle Global Sound
     function toggleAudio() {
       isMuted = !isMuted;
       const soundIcon = document.getElementById('soundIcon');
@@ -867,7 +787,7 @@
     }
 
 
-    /* ================= 2. THEME TOGGLE (DAY / NIGHT) ================= */
+    /* ================= 3. THEME TOGGLE (DAY / NIGHT) ================= */
     function toggleTheme() {
       const htmlElem = document.documentElement;
       const themeIcon = document.getElementById('themeIcon');
@@ -882,7 +802,7 @@
     }
 
 
-    /* ================= 3. LANTERN LIGHT MODE SWITCHER ================= */
+    /* ================= 4. LANTERN LIGHT MODE SWITCHER ================= */
     function setLanternMode(mode) {
       const lanternImg = document.getElementById('lanternImg');
       const lanternText = document.getElementById('lanternStatusText');
@@ -911,7 +831,7 @@
     }
 
 
-    /* ================= 4. DREAM DELIVERY ROUTE MAP ================= */
+    /* ================= 5. DREAM DELIVERY ROUTE MAP ================= */
     const deliveredMap = { bear: false, owl: false, bunny: false, kitten: false };
     let deliveryTotal = 0;
 
@@ -939,7 +859,7 @@
     }
 
 
-    /* ================= 5. INTERACTIVE GARDEN & EASTER EGG ================= */
+    /* ================= 6. INTERACTIVE GARDEN & EASTER EGG ================= */
     let harvestCount = 0;
     let easterEggClicks = 0;
 
@@ -947,31 +867,25 @@
       harvestCount++;
       document.getElementById('harvestCount').innerText = harvestCount;
       playSynthNote(pitch);
-
-      // Create floating sparkle particle
       createSparkle(element);
     }
 
     function createSparkle(target) {
       const rect = target.getBoundingClientRect();
       const particle = document.createElement('div');
-      particle.className = 'sparkle-particle text-xl';
+      particle.className = 'cursor-sparkle';
       particle.innerText = ['✨', '🌸', '💫', '💖'][Math.floor(Math.random() * 4)];
       
       const x = (Math.random() - 0.5) * 80;
       const y = -60 - Math.random() * 40;
       
-      particle.style.setProperty('--tw-x', `${x}px`);
-      particle.style.setProperty('--tw-y', `${y}px`);
-      particle.style.left = `${rect.left + rect.width / 2}px`;
-      particle.style.top = `${rect.top}px`;
+      particle.style.left = `${rect.left + rect.width / 2 + x}px`;
+      particle.style.top = `${rect.top + y}px`;
 
       document.body.appendChild(particle);
-
       setTimeout(() => particle.remove(), 1200);
     }
 
-    // Easter Egg Logic: Click corner flower 5 times
     function clickEasterEgg(e) {
       easterEggClicks++;
       playSynthNote(440 + (easterEggClicks * 80));
@@ -980,7 +894,6 @@
         document.getElementById('easterEggModal').classList.remove('hidden');
         easterEggClicks = 0;
         
-        // Burst of particles
         for (let i = 0; i < 15; i++) {
           setTimeout(() => createSparkle(e.target), i * 60);
         }
@@ -992,7 +905,7 @@
     }
 
 
-    /* ================= 6. MODAL & CERTIFICATE GENERATOR ================= */
+    /* ================= 7. MODALS ================= */
     function openModal() {
       document.getElementById('helloModal').classList.remove('hidden');
     }
